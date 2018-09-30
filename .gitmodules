@@ -1,0 +1,6 @@
+[submodule "Assets/MultiOsControls"]
+	path = Assets/MultiOsControls
+	url = git@github.com:Saarg/MultiOsControls.git
+[submodule "Assets/Arcade_Car_Physics"]
+	path = Assets/Arcade_Car_Physics
+	url = git@github.com:Saarg/Arcade_Car_Physics.git
