@@ -26,6 +26,8 @@ public class FlockingAI : MonoBehaviour {
 	[SerializeField] bool randomStartRot = true;
 	[SerializeField] bool randomize = true;
 
+	[SerializeField] LayerMask _avoidLayerMask;
+
 	void Start () 
 	{
 		_entities.Add(this);
@@ -52,6 +54,11 @@ public class FlockingAI : MonoBehaviour {
 			_bravery += Random.Range(-_bravery/10, _bravery/10);
 			_homeLove += Random.Range(-_homeLove/10, _homeLove/10);
 		}
+
+		// Randomize start animation to look less rigid
+		Animator anim = GetComponentInChildren<Animator>();
+		AnimatorStateInfo state = anim.GetCurrentAnimatorStateInfo(0);//could replace 0 by any other animation layer index
+		anim.Play(state.fullPathHash, -1, Random.Range(0f, 1f));
 	}
 	
 	void OnDestroy()
@@ -62,47 +69,51 @@ public class FlockingAI : MonoBehaviour {
 	void Update () 
 	{
 		Vector3 myPos = transform.position;
-
-		int detectionCount = 0;
-		Vector3 separation = Vector3.zero;
-		Vector3 alignment = Vector3.zero;
-		Vector3 cohesion = Vector3.zero;
-		foreach (FlockingAI e in _entities)
-		{
-			if (e == null || e == this)
-				continue;
-
-			Vector3 distance = e.transform.position - myPos;
-
-			if (distance.sqrMagnitude < _visionDistance*_visionDistance)
-			{
-				separation += distance;
-
-				alignment += e.transform.forward;
-
-				cohesion += e.transform.position;
-
-				detectionCount++;
-			}	
-		}
-
 		Vector3 dir = Vector3.zero;
-		if (detectionCount > 0)
+		
+		// Compute flocking forces
 		{
-			separation /= -detectionCount;
-			alignment /= detectionCount;
-			cohesion = cohesion / detectionCount - myPos;
+			int detectionCount = 0;
+			Vector3 separation = Vector3.zero;
+			Vector3 alignment = Vector3.zero;
+			Vector3 cohesion = Vector3.zero;
+			foreach (FlockingAI e in _entities)
+			{
+				if (e == null || e == this)
+					continue;
 
-			separation.Normalize();
-			alignment.Normalize();
-			cohesion.Normalize();
+				Vector3 distance = e.transform.position - myPos;
 
-			Vector3 flocking = separation * _separation + alignment * _alignment + cohesion * _cohesion;
-			flocking.Normalize();
+				if (distance.sqrMagnitude < _visionDistance*_visionDistance)
+				{
+					separation += distance;
 
-			dir += flocking;
+					alignment += e.transform.forward;
+
+					cohesion += e.transform.position;
+
+					detectionCount++;
+				}	
+			}
+
+			if (detectionCount > 0)
+			{
+				separation /= -detectionCount;
+				alignment /= detectionCount;
+				cohesion = cohesion / detectionCount - myPos;
+
+				separation.Normalize();
+				alignment.Normalize();
+				cohesion.Normalize();
+
+				Vector3 flocking = separation * _separation + alignment * _alignment + cohesion * _cohesion;
+				flocking.Normalize();
+
+				dir += flocking;
+			}
 		}
 
+		// Target force
 		if (_target != null)
 		{
 			Vector3 targetDir = _target.position - myPos;
@@ -111,6 +122,7 @@ public class FlockingAI : MonoBehaviour {
 			dir += targetDir * _focus;
 		}
 		
+		// Wander
 		{
 			Vector3 Wander = Quaternion.AngleAxis(Random.Range(-1, 1) * Mathf.PerlinNoise(myPos.x, myPos.z) * 180, transform.up) * transform.forward;
 			Wander.Normalize();
@@ -118,6 +130,7 @@ public class FlockingAI : MonoBehaviour {
 			dir += Wander * _bravery;
 		}
 
+		// Home force
 		{
 			Vector3 toCenter = -myPos;
 			toCenter.y = 0;
@@ -125,6 +138,38 @@ public class FlockingAI : MonoBehaviour {
 			
 			dir += toCenter * _homeLove;
 		}
+
+		// Obstacle avoidance
+		{
+			RaycastHit hit;
+
+			Color noHit = Color.yellow;
+			noHit.a = 0.2f;
+			Color hasHit = Color.yellow;
+
+			if (Physics.Raycast(transform.position + transform.up, Quaternion.AngleAxis(30, transform.up) * transform.forward, out hit, _speed, ~_avoidLayerMask))
+			{
+				Debug.DrawRay(transform.position + transform.up, Quaternion.AngleAxis(30, transform.up) * transform.forward * _speed, hasHit);
+
+				_lastDir = Quaternion.AngleAxis(-30, transform.up) * _lastDir;
+			}
+			else
+			{
+				Debug.DrawRay(transform.position + transform.up, Quaternion.AngleAxis(30, transform.up) * transform.forward * _speed, noHit);
+			}
+
+			if (Physics.Raycast(transform.position + transform.up, Quaternion.AngleAxis(-30, transform.up) * transform.forward, out hit, _speed, ~_avoidLayerMask))
+			{
+				Debug.DrawRay(transform.position + transform.up, Quaternion.AngleAxis(-30, transform.up) * transform.forward * _speed, hasHit);
+
+				_lastDir = Quaternion.AngleAxis(30, transform.up) * _lastDir;
+			}
+			else
+			{
+				Debug.DrawRay(transform.position + transform.up, Quaternion.AngleAxis(-30, transform.up) * transform.forward * _speed, noHit);
+			}
+		}
+
 		dir.y = 0;
 		dir.Normalize();
 
