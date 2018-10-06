@@ -11,6 +11,10 @@ public class RagDollController : MonoBehaviour {
 	Collider _collider;
 
 	[SerializeField] bool _ragdollMode = false;
+	public bool ragdollMode { 
+		get{ return ragdollMode; } 
+		set{ _ragdollMode = value; }
+	}
 	[SerializeField] MonoBehaviour[] _scriptsToDisable;
 
 	// Use this for initialization
