@@ -20,7 +20,7 @@ public class HitTriggerObject : MonoBehaviour {
 			Vector3 speed = transform.InverseTransformDirection(_parentRb.velocity);
 			speed.Normalize();
 
-			pos += speed * 1.2f;
+			pos += speed * 1.3f;
 		}
 		transform.localPosition = pos;
 	}
