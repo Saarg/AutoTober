@@ -1,11 +1,9 @@
 fileFormatVersion: 2
-guid: 66e362337209b488c8d80b6ae7778427
+guid: 19fa4bd2cf9f141b0916b80ee17ebe66
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
-  defaultReferences:
-  - scorePopupPrefab: {fileID: 114279327527382542, guid: fb6ace0d1c12e4c9786922ac62031c57,
-      type: 2}
+  defaultReferences: []
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 

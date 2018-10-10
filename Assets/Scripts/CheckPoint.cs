@@ -5,6 +5,8 @@ using UnityEngine.Events;
 
 public class CheckPoint : MonoBehaviour {
 
+	[SerializeField][HideInInspector] ScorePopup scorePopupPrefab;
+
 	[SerializeField] UnityEvent _checkedEvent;
 
 	SpriteRenderer _sprite;
@@ -30,6 +32,10 @@ public class CheckPoint : MonoBehaviour {
 			_checked = true;
 
 			_checkedEvent.Invoke();
+
+			Transform spawnPos = other.gameObject.transform;
+			ScorePopup sp = GameObject.Instantiate(scorePopupPrefab.gameObject, spawnPos.position, spawnPos.rotation).GetComponent<ScorePopup>();
+			sp.SetScore(1000);
 		}
     }
 }
