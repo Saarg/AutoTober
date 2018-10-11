@@ -24,7 +24,7 @@ GameObject:
   - component: {fileID: 64790150378154336}
   m_Layer: 0
   m_Name: block_rounded_24
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -42,7 +42,7 @@ GameObject:
   - component: {fileID: 64372399838371706}
   m_Layer: 0
   m_Name: detail_rollbar_4
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -60,7 +60,7 @@ GameObject:
   - component: {fileID: 64380080425934132}
   m_Layer: 0
   m_Name: detail_fenderSquare_12
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -129,7 +129,7 @@ GameObject:
   - component: {fileID: 64388575485758468}
   m_Layer: 0
   m_Name: detail_fenderSquare_11
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -147,7 +147,7 @@ GameObject:
   - component: {fileID: 64214598887373820}
   m_Layer: 0
   m_Name: debris_wood_27
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -163,7 +163,7 @@ GameObject:
   - component: {fileID: 146284707171886784}
   - component: {fileID: 114364737660034246}
   - component: {fileID: 114900246584984588}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: BRWheel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -183,7 +183,7 @@ GameObject:
   - component: {fileID: 64796443736442494}
   m_Layer: 0
   m_Name: detail_fenderSquare_10
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -201,7 +201,7 @@ GameObject:
   - component: {fileID: 64412444045655322}
   m_Layer: 0
   m_Name: detail_engine_5
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -219,7 +219,7 @@ GameObject:
   - component: {fileID: 64462958740113296}
   m_Layer: 0
   m_Name: hood_default_1
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -237,7 +237,7 @@ GameObject:
   - component: {fileID: 64794795474142994}
   m_Layer: 0
   m_Name: detail_fenderSquare_13
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -255,7 +255,7 @@ GameObject:
   - component: {fileID: 64251999809622026}
   m_Layer: 0
   m_Name: wall_border_31
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -271,7 +271,7 @@ GameObject:
   - component: {fileID: 146660989007936196}
   - component: {fileID: 114104354204338640}
   - component: {fileID: 114580155494200270}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: FLWheel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -286,8 +286,8 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4576173780019638}
-  - component: {fileID: 135382801178380956}
   - component: {fileID: 114109786164206192}
+  - component: {fileID: 136131332150159834}
   m_Layer: 0
   m_Name: HitTrigger
   m_TagString: Untagged
@@ -325,7 +325,7 @@ GameObject:
   - component: {fileID: 64921459414989980}
   m_Layer: 0
   m_Name: windshield_square_3
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -343,7 +343,7 @@ GameObject:
   - component: {fileID: 64416676641114356}
   m_Layer: 0
   m_Name: detail_bumper_32
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -378,7 +378,7 @@ GameObject:
   - component: {fileID: 64133772906565582}
   m_Layer: 0
   m_Name: trunk_bed_0
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -394,7 +394,7 @@ GameObject:
   - component: {fileID: 146640744072233582}
   - component: {fileID: 114693165536009374}
   - component: {fileID: 114377153473367634}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: BLWheel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -414,7 +414,7 @@ GameObject:
   - component: {fileID: 64204118400637720}
   m_Layer: 0
   m_Name: detail_bullbar_9
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -429,7 +429,7 @@ GameObject:
   - component: {fileID: 4695410620491486}
   m_Layer: 0
   m_Name: Car01 (1)
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -447,7 +447,7 @@ GameObject:
   - component: {fileID: 64756388232409304}
   m_Layer: 0
   m_Name: wall_border_30
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -480,7 +480,7 @@ GameObject:
   - component: {fileID: 64385928728122728}
   m_Layer: 0
   m_Name: detail_exhaustVertical_7
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -534,7 +534,7 @@ GameObject:
   - component: {fileID: 82430733079669848}
   m_Layer: 0
   m_Name: Car01
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -569,7 +569,7 @@ GameObject:
   - component: {fileID: 64316515136427988}
   m_Layer: 0
   m_Name: debris_bricks_29
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -585,7 +585,7 @@ GameObject:
   - component: {fileID: 146725315154229448}
   - component: {fileID: 114219761792122282}
   - component: {fileID: 114113020422347492}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: FRWheel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -605,7 +605,7 @@ GameObject:
   - component: {fileID: 64102219690431418}
   m_Layer: 0
   m_Name: detail_exhaustVertical_6
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -865,7 +865,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1285843011189582}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.5, z: 1.189}
+  m_LocalPosition: {x: 0, y: 0.5, z: 1.3}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4019201152405548}
@@ -2752,8 +2752,8 @@ MonoBehaviour:
   trailing: 0
   parent: {fileID: 4396395214232238}
   offset: {x: 0, y: -0.29, z: 0}
---- !u!135 &135382801178380956
-SphereCollider:
+--- !u!136 &136131332150159834
+CapsuleCollider:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
@@ -2761,8 +2761,9 @@ SphereCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 1
   m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 0.8
+  m_Radius: 0.85
+  m_Height: 2.5
+  m_Direction: 2
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!146 &146284707171886784
 WheelCollider:
