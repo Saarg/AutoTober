@@ -59,11 +59,6 @@ public class AnimatePosition : MonoBehaviour {
 	/// </summary>
 	void OnDisable()
 	{
-		if (running) {
-			transform.localPosition = startPos;
-			transform.localRotation = Quaternion.Euler(startRot);
-		}
-
 		running = false;
 	}
 
@@ -89,28 +84,57 @@ public class AnimatePosition : MonoBehaviour {
 	/// 	Coroutine running the animation
 	/// </summary> 
 	IEnumerator RunAnimation () {
-		startPos = transform.localPosition;
-		startRot = transform.localRotation.eulerAngles;
+		if (!running) {
+			if (transform is RectTransform)
+			{
+				startPos = (transform as RectTransform).anchoredPosition3D;
+				startRot = transform.localRotation.eulerAngles;
+			}
+			else
+			{
+				startPos = transform.localPosition;
+				startRot = transform.localRotation.eulerAngles;
+			}
 
-		float startTime = Time.realtimeSinceStartup + offset;
-		running = true;
+			float startTime = Time.realtimeSinceStartup + offset;
+			running = true;
 
-		while ((Time.realtimeSinceStartup - startTime) / animLength < 1f || (loop && !requestedStop)) {
-			float curTime = ((Time.realtimeSinceStartup - startTime) / animLength) % 1f;
+			while ((Time.realtimeSinceStartup - startTime) / animLength < 1f || (loop && !requestedStop)) {
+				if (!running)
+					break;
+				
+				float curTime = ((Time.realtimeSinceStartup - startTime) / animLength) % 1f;
 
-			transform.localPosition = startPos + new Vector3(posXCurve.Evaluate(curTime), posYCurve.Evaluate(curTime), posZCurve.Evaluate(curTime));
-			transform.localRotation = Quaternion.Euler(startRot + new Vector3(rotXCurve.Evaluate(curTime), rotYCurve.Evaluate(curTime), rotZCurve.Evaluate(curTime)));
+				Vector3 posVar = new Vector3(posXCurve.Evaluate(curTime), posYCurve.Evaluate(curTime), posZCurve.Evaluate(curTime));
+				if (transform is RectTransform)
+				{
+					(transform as RectTransform).anchoredPosition3D = startPos + posVar;
+				}
+				else
+				{
+					transform.localPosition = startPos + posVar;
+				}
+				transform.localRotation = Quaternion.Euler(startRot + new Vector3(rotXCurve.Evaluate(curTime), rotYCurve.Evaluate(curTime), rotZCurve.Evaluate(curTime)));
 
-			yield return new WaitForSeconds(refreshTime);
+				yield return new WaitForSeconds(refreshTime);
+			}
+
+			running = false;
+			requestedStop = false;
+
+			if (disableOnStop)
+				gameObject.SetActive(false);
+			
+			if (transform is RectTransform)
+			{
+				(transform as RectTransform).anchoredPosition3D = startPos;
+				transform.localRotation = Quaternion.Euler(startRot);
+			}
+			else
+			{
+				transform.localPosition = startPos;
+				transform.localRotation = Quaternion.Euler(startRot);
+			}
 		}
-
-		running = false;
-		requestedStop = false;
-
-		if (disableOnStop)
-			gameObject.SetActive(false);
-		
-		transform.localPosition = startPos;
-		transform.localRotation = Quaternion.Euler(startRot);
 	}
 }
