@@ -1,19 +1,28 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using VehicleBehaviour;
 
 public class RaceManager : MonoBehaviour {
 
-	[SerializeField] float expectedTime;
+	[SerializeField] int expectedTime;
 	[SerializeField] CheckPoint[] _checkPoints;
 
 	float _startTime;
 	float _endTime;
+
+	[SerializeField] WheelVehicle _vehicle;
+	[SerializeField] Ghost _ghost;
+	GhostRecorder _recorder = null;
 	
 	public void StartRace()
 	{
 		Debug.Log("Race start");
 		_startTime = Time.realtimeSinceStartup;
+
+		_recorder = new GhostRecorder(expectedTime, 10, ref _vehicle);
+		StartCoroutine(_recorder.RecordCoroutine());
+		_ghost.run = true;
 	}
 
 	public void FinishRace()
@@ -31,6 +40,9 @@ public class RaceManager : MonoBehaviour {
 			Debug.Log("Finish time: " + _endTime);
 
 			UIManager.instance.AddScore(Mathf.FloorToInt(expectedTime - _endTime) * 1000);
+
+			_recorder.requestStop = true;
+			_recorder.Save();
 		}
 		else
 		{
