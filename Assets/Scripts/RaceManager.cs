@@ -23,6 +23,7 @@ public class RaceManager : MonoBehaviour {
 		_recorder = new GhostRecorder(expectedTime, 10, ref _vehicle);
 		StartCoroutine(_recorder.RecordCoroutine());
 		_ghost.run = true;
+		_ghost.gameObject.SetActive(true);
 	}
 
 	public void FinishRace()
@@ -41,8 +42,9 @@ public class RaceManager : MonoBehaviour {
 
 			UIManager.instance.AddScore(Mathf.FloorToInt(expectedTime - _endTime) * 1000);
 
-			_recorder.requestStop = true;
-			_recorder.Save();
+			_recorder.Stop();
+			if (!_ghost.exist || _ghost.duration > _recorder.duration)
+				_recorder.Save();
 		}
 		else
 		{

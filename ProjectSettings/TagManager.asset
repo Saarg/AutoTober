@@ -3,7 +3,8 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - Ghost
   layers:
   - Default
   - TransparentFX
@@ -18,8 +19,8 @@ TagManager:
   - Ragdoll
   - Skeleton
   - Wheel
-  - 
-  - 
+  - Ghost
+  - Player
   - 
   - 
   - 
