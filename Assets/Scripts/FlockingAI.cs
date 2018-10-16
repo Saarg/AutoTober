@@ -28,8 +28,12 @@ public class FlockingAI : MonoBehaviour {
 
 	[SerializeField] LayerMask _avoidLayerMask;
 
+	int _updateFrame = -1;
+
 	void Start () 
 	{
+		_updateFrame = Random.Range(0, 9);
+
 		_entities.Add(this);
 
 		if (randomStartRot) {
@@ -147,26 +151,26 @@ public class FlockingAI : MonoBehaviour {
 			noHit.a = 0.2f;
 			Color hasHit = Color.yellow;
 
-			if (Physics.Raycast(transform.position + transform.up * 0.2f, Quaternion.AngleAxis(30, transform.up) * transform.forward, out hit, _speed, ~_avoidLayerMask))
+			if (Physics.Raycast(transform.position + transform.up, Quaternion.AngleAxis(30, transform.up) * transform.forward, out hit, _speed, ~_avoidLayerMask))
 			{
-				Debug.DrawRay(transform.position + transform.up * 0.2f, Quaternion.AngleAxis(30, transform.up) * transform.forward * _speed, hasHit);
+				Debug.DrawRay(transform.position + transform.up, Quaternion.AngleAxis(30, transform.up) * transform.forward * _speed, hasHit);
 
 				_lastDir = Quaternion.AngleAxis(-30, transform.up) * _lastDir;
 			}
 			else
 			{
-				Debug.DrawRay(transform.position + transform.up * 0.2F, Quaternion.AngleAxis(30, transform.up) * transform.forward * _speed, noHit);
+				Debug.DrawRay(transform.position + transform.up, Quaternion.AngleAxis(30, transform.up) * transform.forward * _speed, noHit);
 			}
 
-			if (Physics.Raycast(transform.position + transform.up * 0.2f, Quaternion.AngleAxis(-30, transform.up) * transform.forward, out hit, _speed, ~_avoidLayerMask))
+			if (Physics.Raycast(transform.position + transform.up, Quaternion.AngleAxis(-30, transform.up) * transform.forward, out hit, _speed, ~_avoidLayerMask))
 			{
-				Debug.DrawRay(transform.position + transform.up * 0.2f, Quaternion.AngleAxis(-30, transform.up) * transform.forward * _speed, hasHit);
+				Debug.DrawRay(transform.position + transform.up, Quaternion.AngleAxis(-30, transform.up) * transform.forward * _speed, hasHit);
 
 				_lastDir = Quaternion.AngleAxis(30, transform.up) * _lastDir;
 			}
 			else
 			{
-				Debug.DrawRay(transform.position + transform.up * 0.2F, Quaternion.AngleAxis(-30, transform.up) * transform.forward * _speed, noHit);
+				Debug.DrawRay(transform.position + transform.up, Quaternion.AngleAxis(-30, transform.up) * transform.forward * _speed, noHit);
 			}
 		}
 
@@ -186,6 +190,18 @@ public class FlockingAI : MonoBehaviour {
 		transform.LookAt(myPos + _lastDir);
 
 		transform.rotation = Quaternion.Lerp(oldRot, transform.rotation, 2 * Time.deltaTime);
+
+		{
+			Debug.DrawRay(transform.position + transform.up, -2*transform.up, Color.white);
+			if (Time.frameCount % 10 == _updateFrame)
+			{
+				RaycastHit hit;
+				if (Physics.Raycast(transform.position + transform.up, -transform.up, out hit, 2, ~_avoidLayerMask))
+				{
+					transform.position = hit.point;
+				}
+			}
+		}
 	}
 
 	void OnDrawGizmos()
