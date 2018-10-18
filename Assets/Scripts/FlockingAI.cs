@@ -86,7 +86,7 @@ public class FlockingAI : MonoBehaviour {
 		{
 			float distance2 = (transform.position - go.transform.position).sqrMagnitude;
 
-			if (distance2 < 100)
+			if (distance2 < 2500)
 			{
 				dontUpdate = false;
 				break;
