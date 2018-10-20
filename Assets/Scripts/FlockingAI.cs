@@ -219,11 +219,11 @@ public class FlockingAI : MonoBehaviour {
 		transform.rotation = Quaternion.Lerp(oldRot, transform.rotation, 2 * Time.deltaTime);
 
 		{
-			Debug.DrawRay(transform.position + transform.up, -2*transform.up, Color.white);
+			Debug.DrawRay(transform.position + transform.up, -4*transform.up, Color.white);
 			if (Time.frameCount % 10 == _updateFrame)
 			{
 				RaycastHit hit;
-				if (Physics.Raycast(transform.position + transform.up, -transform.up, out hit, 2, ~_avoidLayerMask))
+				if (Physics.Raycast(transform.position + transform.up, -transform.up, out hit, 4, ~_avoidLayerMask))
 				{
 					transform.position = hit.point;
 				}
