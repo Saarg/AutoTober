@@ -5,8 +5,6 @@ using UnityEngine.UI;
 
 public class ScorePopup : MonoBehaviour {
 
-	static UIManager _uiManager;
-
 	static new Camera camera;
 	[SerializeField] TextMesh scoreText;
 
@@ -26,9 +24,6 @@ public class ScorePopup : MonoBehaviour {
 	void Start () {
 		if (camera == null)
 			camera = FindObjectOfType<Camera>();
-		
-		if (_uiManager == null)
-			_uiManager = UIManager.instance;
 
 		startTime = Time.realtimeSinceStartup;
 
@@ -41,10 +36,7 @@ public class ScorePopup : MonoBehaviour {
 	public void SetScore(float s) {
 		int score = Mathf.FloorToInt(s);
 
-		if (_uiManager == null)
-			_uiManager = UIManager.instance;
-
-		if (score < 100 || _uiManager == null)
+		if (score < 100)
 		{
 			Destroy(gameObject);
 			return;
@@ -54,8 +46,6 @@ public class ScorePopup : MonoBehaviour {
 		scoreText.color = score > 0 ? posColor : negColor;
 
 		transform.localScale = Vector3.one * Mathf.Clamp(0.5f + (Mathf.Abs(s) / 5000f), 0.5f, 1.5f);
-
-		_uiManager.AddScore(score);
 	}
 	
 	void Update () {

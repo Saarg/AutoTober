@@ -58,8 +58,11 @@ public class RagDollController : MonoBehaviour {
 	{
 		if (_collider.enabled == _ragdollMode)
 		{
-			if (_ragdollMode)
-				UIManager.instance.AddScore(100);
+			PlayerHolder ph = GetComponentInParent<PlayerHolder>();
+			if (_ragdollMode && ph != null)
+			{
+				ph.Ui.AddScore(100);
+			}
 
 			_animator.enabled = !_ragdollMode;
 			_collider.enabled = !_ragdollMode;

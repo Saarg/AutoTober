@@ -32,6 +32,9 @@ public class ScoreMaker : MonoBehaviour {
 			ScorePopup sp = GameObject.Instantiate(scorePopupPrefab.gameObject, spawnPos.position, spawnPos.rotation).GetComponent<ScorePopup>();
 			sp.SetScore(col.relativeVelocity.sqrMagnitude);
 
+			PlayerHolder ph = col.gameObject.GetComponentInParent<PlayerHolder>();
+			ph.Ui.AddScore(Mathf.FloorToInt(col.relativeVelocity.sqrMagnitude));
+
 			this.enabled = false;
 		}
 	}

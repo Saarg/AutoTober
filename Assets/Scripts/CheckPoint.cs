@@ -1,20 +1,22 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
+using VehicleBehaviour;
 
 public class CheckPoint : MonoBehaviour {
 
-	[SerializeField][HideInInspector] ScorePopup scorePopupPrefab;
-
-	[SerializeField] UnityEvent _checkedEvent;
+	[Serializable]
+	public class CheckedEvent : UnityEvent <WheelVehicle>{ }
+	[SerializeField] CheckedEvent _checkedEvent;
 
 	SpriteRenderer _sprite;
 	[SerializeField] Color _defaultColor = new Color(1.0f, 1.0f, 1.0f, 0.3f);
 	[SerializeField] Color _passedColor = new Color(0.0f, 1.0f, 1.0f, 0.3f);
 
-	bool _checked = false;
-	public bool IsChecked() { return _checked; }
+	Dictionary<WheelVehicle, bool> _checked = new Dictionary<WheelVehicle, bool>();
+	public bool IsChecked(WheelVehicle v) { return _checked[v]; }
 
 	void Start () 
 	{
@@ -25,17 +27,14 @@ public class CheckPoint : MonoBehaviour {
 	
 	void OnTriggerEnter(Collider other)
     {
-		if (other.gameObject.CompareTag("Player") && !_checked)
+		WheelVehicle v = other.GetComponentInParent<WheelVehicle>();
+		if (v != null && other.gameObject.CompareTag("Player") && !_checked.ContainsKey(v))
 		{
         	_sprite.color = _passedColor;
 
-			_checked = true;
+			_checked[v] = true;
 
-			_checkedEvent.Invoke();
-
-			Transform spawnPos = other.gameObject.transform;
-			ScorePopup sp = GameObject.Instantiate(scorePopupPrefab.gameObject, spawnPos.position, spawnPos.rotation).GetComponent<ScorePopup>();
-			sp.SetScore(1000);
+			_checkedEvent.Invoke(v);
 		}
     }
 }

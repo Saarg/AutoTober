@@ -6,8 +6,6 @@ using VehicleBehaviour;
 
 public class UIManager : MonoBehaviour {
 
-	public static UIManager instance { get; internal set; }
-
 	[SerializeField] WheelVehicle _playerCar;
  
 	[SerializeField] int _score;
@@ -17,7 +15,7 @@ public class UIManager : MonoBehaviour {
 
 	void Start ()
 	{
-		instance = this;
+		
 	}
 	
 	void Update ()
