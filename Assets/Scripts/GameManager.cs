@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 using VehicleBehaviour;
 
 [DefaultExecutionOrder(-400)]
@@ -13,17 +14,41 @@ public class GameManager : MonoBehaviour {
 
 	[SerializeField] PlayerHolder[] _players;
 
-	[Header("CountDown")]
-	[SerializeField] Text _countdownText;
-	float _countdownLength = 3.0f;
-	float _countdownStart;
-
 	void Start () 
 	{
 		Random.InitState(_seed);
 
-		StartCoroutine(Countdown());
+		StartCoroutine(LoadAsyncScene());
 	}
+
+	[Header("Scene")]
+	[SerializeField] string _scene;
+	[SerializeField] GameObject _loadingObject;
+
+	IEnumerator LoadAsyncScene()
+    {
+		Debug.Log("Starting to load " + _scene);
+		_loadingObject.SetActive(true);
+
+        AsyncOperation asyncLoad = SceneManager.LoadSceneAsync(_scene, LoadSceneMode.Additive);
+
+        // Wait until the asynchronous scene fully loads
+        while (!asyncLoad.isDone)
+        {
+            yield return null;
+        }
+
+		
+		Debug.Log("Loading done " + _scene);
+		_loadingObject.SetActive(false);
+
+		StartCoroutine(Countdown());
+    }
+
+	[Header("CountDown")]
+	[SerializeField] Text _countdownText;
+	float _countdownLength = 3.0f;
+	float _countdownStart;
 	
 	IEnumerator Countdown()
 	{
@@ -32,18 +57,25 @@ public class GameManager : MonoBehaviour {
 		_countdownStart = Time.realtimeSinceStartup;
 
 		foreach(PlayerHolder ph in _players)
-			ph.Vehicle.Handbrake = true;
+		{
+			// ph.Vehicle.Handbrake = true;
+			ph.Vehicle.GetComponent<Rigidbody>().isKinematic = true;
+		}
 
 		while (Time.realtimeSinceStartup - _countdownStart < _countdownLength)
 		{
 			_countdownText.text = "" + Mathf.CeilToInt(_countdownLength - (Time.realtimeSinceStartup - _countdownStart));
+			_countdownText.fontSize = 200 + (int)((Time.realtimeSinceStartup - _countdownStart)%1f * 100f);
 
 			yield return null;
 		}
 
 		_countdownText.gameObject.SetActive(false);
 		foreach(PlayerHolder ph in _players)
-			ph.Vehicle.Handbrake = false;
+		{
+			// ph.Vehicle.Handbrake = false;
+			ph.Vehicle.GetComponent<Rigidbody>().isKinematic = false;
+		}
 	}
 
 	[Header("RaceManager")]
@@ -97,7 +129,15 @@ public class GameManager : MonoBehaviour {
 
 				_recorders[player].Stop();
 				if (!_ghost.exist || _ghost.duration > _recorders[player].duration)
+				{
 					_recorders[player].Save();
+
+					ph.Ui.Finish(_ghost.duration, true);
+				}
+				else
+				{
+					ph.Ui.Finish(_ghost.duration, false);
+				}
 			}
 		}
 		else

@@ -11,14 +11,4 @@ public class PlayerHolder : MonoBehaviour {
 	public UIManager Ui { get { return _ui; }}
 	[SerializeField] Camera _camera;
 	public Camera Camera { get { return _camera; }}
-
-	void Start () 
-	{
-		
-	}
-	
-	void Update () 
-	{
-		
-	}
 }

@@ -10,13 +10,10 @@ public class UIManager : MonoBehaviour {
  
 	[SerializeField] int _score;
 	[SerializeField] Text _textScore;
+	[SerializeField] Text _finishText;
+	[SerializeField] Text _recordText;
 
 	[SerializeField] Image _boostBar;
-
-	void Start ()
-	{
-		
-	}
 	
 	void Update ()
 	{
@@ -28,5 +25,13 @@ public class UIManager : MonoBehaviour {
 	public void AddScore(int score)
 	{
 		_score += score;
+	}
+
+	public void Finish(float time, bool record)
+	{
+		_finishText.text = "Finished\n" + Mathf.FloorToInt(time/60f) + "m" + Mathf.FloorToInt(time%60f) + "s";
+
+		_finishText.gameObject.SetActive(true);
+		_recordText.gameObject.SetActive(record);
 	}
 }

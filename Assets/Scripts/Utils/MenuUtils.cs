@@ -21,25 +21,25 @@ public class MenuUtils : MonoBehaviour {
 
 	IEnumerator LoadAsyncScene(string name)
     {
-		if (_loading)
-			yield return null;
+		if (!_loading)
+		{
+			Debug.Log("Starting to load " + name);
+			_loading = true;
 
-		Debug.Log("Starting to load " + name);
-		_loading = true;
+			_startLoading.Invoke();
 
-		_startLoading.Invoke();
+			AsyncOperation asyncLoad = SceneManager.LoadSceneAsync(name);
 
-        AsyncOperation asyncLoad = SceneManager.LoadSceneAsync(name);
+			// Wait until the asynchronous scene fully loads
+			while (!asyncLoad.isDone)
+			{
+				yield return null;
+			}
 
-        // Wait until the asynchronous scene fully loads
-        while (!asyncLoad.isDone)
-        {
-            yield return null;
-        }
-
-		
-		Debug.Log("Loading done " + name);
-		_loading = false;
+			
+			Debug.Log("Loading done " + name);
+			_loading = false;
+		}
     }
 
 	public void Fullscreen(bool enable)
