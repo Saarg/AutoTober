@@ -8,6 +8,8 @@ using VehicleBehaviour;
 [DefaultExecutionOrder(-400)]
 public class GameManager : MonoBehaviour {
 
+	static public GameManager instance { get; internal set;}
+
 	[SerializeField] ScorePopup scorePopupPrefab;
 
 	[SerializeField] int _seed;
@@ -16,6 +18,14 @@ public class GameManager : MonoBehaviour {
 
 	void Start () 
 	{
+		if (instance != null)
+		{
+			Debug.LogError("More than one gamemanager instance found!");
+			Destroy(this);
+		}
+
+		instance = this;
+
 		Random.InitState(_seed);
 
 		StartCoroutine(LoadAsyncScene());

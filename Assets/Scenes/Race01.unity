@@ -4324,6 +4324,8 @@ MonoBehaviour:
       PublicKeyToken=null
   _defaultColor: {r: 1, g: 1, b: 1, a: 0.3}
   _passedColor: {r: 0, g: 1, b: 1, a: 0.3}
+  _isStart: 0
+  _isFinish: 0
 --- !u!65 &265698718
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -13042,6 +13044,8 @@ MonoBehaviour:
       PublicKeyToken=null
   _defaultColor: {r: 1, g: 1, b: 1, a: 0.3}
   _passedColor: {r: 0, g: 1, b: 1, a: 0.3}
+  _isStart: 0
+  _isFinish: 0
 --- !u!65 &833806914
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -16275,6 +16279,8 @@ MonoBehaviour:
       PublicKeyToken=null
   _defaultColor: {r: 1, g: 1, b: 1, a: 0.3}
   _passedColor: {r: 0, g: 1, b: 1, a: 0.3}
+  _isStart: 0
+  _isFinish: 0
 --- !u!65 &1004041747
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -28273,6 +28279,8 @@ MonoBehaviour:
       PublicKeyToken=null
   _defaultColor: {r: 1, g: 1, b: 1, a: 0.3}
   _passedColor: {r: 0, g: 1, b: 1, a: 0.3}
+  _isStart: 0
+  _isFinish: 0
 --- !u!65 &1895764026
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -28478,12 +28486,12 @@ Prefab:
     - target: {fileID: 114991009764198814, guid: bb3871717f261467dabdbf0645c57a7f,
         type: 2}
       propertyPath: _checkedEvent.m_PersistentCalls.m_Calls.Array.size
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 114011927172044066, guid: bb3871717f261467dabdbf0645c57a7f,
         type: 2}
       propertyPath: _checkedEvent.m_PersistentCalls.m_Calls.Array.size
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4850361151059924, guid: bb3871717f261467dabdbf0645c57a7f, type: 2}
       propertyPath: m_LocalPosition.x
@@ -28752,6 +28760,21 @@ Prefab:
       propertyPath: _checkedEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
       value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
+    - target: {fileID: 114991009764198814, guid: bb3871717f261467dabdbf0645c57a7f,
+        type: 2}
+      propertyPath: _isFinish
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 114991009764198814, guid: bb3871717f261467dabdbf0645c57a7f,
+        type: 2}
+      propertyPath: _isStart
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114011927172044066, guid: bb3871717f261467dabdbf0645c57a7f,
+        type: 2}
+      propertyPath: _isFinish
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 114852645863904236, guid: bb3871717f261467dabdbf0645c57a7f, type: 2}
   m_ParentPrefab: {fileID: 100100000, guid: bb3871717f261467dabdbf0645c57a7f, type: 2}
@@ -28819,6 +28842,8 @@ MonoBehaviour:
       PublicKeyToken=null
   _defaultColor: {r: 1, g: 1, b: 1, a: 0.3}
   _passedColor: {r: 0, g: 1, b: 1, a: 0.3}
+  _isStart: 0
+  _isFinish: 0
 --- !u!65 &1924358675
 BoxCollider:
   m_ObjectHideFlags: 0
