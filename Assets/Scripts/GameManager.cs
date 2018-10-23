@@ -52,6 +52,7 @@ public class GameManager : MonoBehaviour {
 		Debug.Log("Loading done " + _scene);
 		_loadingObject.SetActive(false);
 
+		_checkPoints = FindObjectsOfType<CheckPoint>();
 		StartCoroutine(Countdown());
     }
 
@@ -137,16 +138,19 @@ public class GameManager : MonoBehaviour {
 				ScorePopup sp = GameObject.Instantiate(scorePopupPrefab.gameObject, spawnPos.position, spawnPos.rotation).GetComponent<ScorePopup>();
 				sp.SetScore(Mathf.FloorToInt(expectedTime - _endTime) * 1000);
 
+				int score = ph.Ui.GetScore();
+
 				_recorders[player].Stop();
-				if (!_ghost.exist || _ghost.duration > _recorders[player].duration)
+				if (!_ghost.exist || score > _ghost.score)
 				{
+					_ghost.score = score;
 					_recorders[player].Save();
 
-					ph.Ui.Finish(_ghost.duration, true);
+					ph.Ui.Finish(_endTime, score, true);
 				}
 				else
 				{
-					ph.Ui.Finish(_ghost.duration, false);
+					ph.Ui.Finish(_endTime, score, false);
 				}
 			}
 		}

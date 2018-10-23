@@ -151,18 +151,7 @@ MonoBehaviour:
   _loadingObject: {fileID: 1299293389}
   _countdownText: {fileID: 512798394}
   expectedTime: 60
-  _checkPoints:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  _checkPoints: []
   _ghost: {fileID: 1075816517}
 --- !u!4 &11380253
 Transform:
@@ -4911,7 +4900,7 @@ Prefab:
     m_Modifications:
     - target: {fileID: 22451668, guid: 0abab5bb77339e4428787a870eb31bd3, type: 2}
       propertyPath: m_RootOrder
-      value: 4
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 22451668, guid: 0abab5bb77339e4428787a870eb31bd3, type: 2}
       propertyPath: m_LocalPosition.x
@@ -4943,7 +4932,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 22451668, guid: 0abab5bb77339e4428787a870eb31bd3, type: 2}
       propertyPath: m_RootOrder
-      value: 4
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 22451668, guid: 0abab5bb77339e4428787a870eb31bd3, type: 2}
       propertyPath: m_AnchoredPosition.x
@@ -12118,7 +12107,7 @@ Transform:
   - {fileID: 83024162}
   - {fileID: 1099181419}
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1099181416
 GameObject:
@@ -17888,7 +17877,7 @@ MonoBehaviour:
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_FontData:
     m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
-    m_FontSize: 100
+    m_FontSize: 60
     m_FontStyle: 0
     m_BestFit: 0
     m_MinSize: 0
@@ -17901,7 +17890,9 @@ MonoBehaviour:
     m_LineSpacing: 1
   m_Text: 'Finished
 
-    1m00s'
+    1m00s
+
+    Score: 90000'
 --- !u!222 &1644042849
 CanvasRenderer:
   m_ObjectHideFlags: 0

@@ -27,9 +27,14 @@ public class UIManager : MonoBehaviour {
 		_score += score;
 	}
 
-	public void Finish(float time, bool record)
+	public int GetScore()
 	{
-		_finishText.text = "Finished\n" + Mathf.FloorToInt(time/60f) + "m" + Mathf.FloorToInt(time%60f) + "s";
+		return _score;
+	}
+
+	public void Finish(float time, int score, bool record)
+	{
+		_finishText.text = "Finished\n" + Mathf.FloorToInt(time/60f) + "m" + Mathf.FloorToInt(time%60f) + "s\nscore: " + score;
 
 		_finishText.gameObject.SetActive(true);
 		_recordText.gameObject.SetActive(record);
