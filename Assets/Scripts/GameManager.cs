@@ -144,7 +144,7 @@ public class GameManager : MonoBehaviour {
 				if (!_ghost.exist || score > _ghost.score)
 				{
 					_ghost.score = score;
-					_recorders[player].Save();
+					_recorders[player].Save(_scene + "-BestTime");
 
 					ph.Ui.Finish(_endTime, score, true);
 				}
