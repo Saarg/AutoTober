@@ -4,7 +4,14 @@ using UnityEngine;
 
 public class FlockingAI : MonoBehaviour {
 
-	static private List<FlockingAI> _entities = new List<FlockingAI>(100);
+	static private List<FlockingAI> _entities = new List<FlockingAI>(300);
+	static private GameObject[] _players;
+
+	static public void ResetStatics() 
+	{
+		_entities = new List<FlockingAI>(300);
+		_players = null;
+	}
 
 	[SerializeField]
 	private Transform _target;
@@ -29,8 +36,6 @@ public class FlockingAI : MonoBehaviour {
 	[SerializeField] LayerMask _avoidLayerMask;
 
 	int _updateFrame = -1;
-
-	static GameObject[] _players;
 
 	void Start () 
 	{

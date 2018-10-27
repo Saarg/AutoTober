@@ -24,6 +24,8 @@ public class GameManager : MonoBehaviour {
 			Destroy(this);
 		}
 
+		FlockingAI.ResetStatics();
+
 		instance = this;
 
 		Random.InitState(_seed);
@@ -48,6 +50,7 @@ public class GameManager : MonoBehaviour {
             yield return null;
         }
 
+		yield return new WaitForSeconds(2f);
 		
 		Debug.Log("Loading done " + _scene);
 		_loadingObject.SetActive(false);

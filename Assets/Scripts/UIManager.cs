@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.EventSystems;
 using VehicleBehaviour;
 
 public class UIManager : MonoBehaviour {
@@ -14,6 +15,16 @@ public class UIManager : MonoBehaviour {
 	[SerializeField] Text _recordText;
 
 	[SerializeField] Image _boostBar;
+
+	[SerializeField] StandaloneInputModule[] _eventSystems;
+
+	void Start()
+	{
+		foreach (StandaloneInputModule es in _eventSystems)
+		{
+			es.enabled = false;
+		}
+	}
 	
 	void Update ()
 	{
@@ -38,5 +49,16 @@ public class UIManager : MonoBehaviour {
 
 		_finishText.gameObject.SetActive(true);
 		_recordText.gameObject.SetActive(record);
+
+		StartCoroutine(CEnableEventSystems());
+	}
+
+	IEnumerator CEnableEventSystems()
+	{
+		yield return new WaitForSeconds(1f);
+		foreach (StandaloneInputModule es in _eventSystems)
+		{
+			es.enabled = true;
+		}
 	}
 }
