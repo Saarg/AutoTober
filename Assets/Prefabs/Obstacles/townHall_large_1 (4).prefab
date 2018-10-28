@@ -21,7 +21,7 @@ GameObject:
   - component: {fileID: 4105363049355966}
   - component: {fileID: 33624467606432944}
   - component: {fileID: 64006140691636396}
-  m_Layer: 9
+  m_Layer: 0
   m_Name: default_MeshPart0 (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -36,7 +36,6 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4579042597659232}
-  - component: {fileID: 54964525001469808}
   m_Layer: 0
   m_Name: townHall_large_1 (4)
   m_TagString: Untagged
@@ -126,14 +125,14 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1574261262388344}
-  m_LocalRotation: {x: -0, y: 1, z: -0, w: 0.000002324581}
-  m_LocalPosition: {x: 8.934031, y: -7279, z: 49.36962}
+  m_LocalRotation: {x: -0, y: -0.70710254, z: -0, w: -0.70711106}
+  m_LocalPosition: {x: -66.751076, y: 12.0260935, z: 24.616096}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4583788297225324}
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 180.00002, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 449.999, z: 0}
 --- !u!4 &4583788297225324
 Transform:
   m_ObjectHideFlags: 1
@@ -266,21 +265,6 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1950850878248564}
   m_Mesh: {fileID: 4300002, guid: 222832bb357b74eb88f4186426c0e09f, type: 3}
---- !u!54 &54964525001469808
-Rigidbody:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1574261262388344}
-  serializedVersion: 2
-  m_Mass: 1
-  m_Drag: 0
-  m_AngularDrag: 0.05
-  m_UseGravity: 0
-  m_IsKinematic: 1
-  m_Interpolate: 0
-  m_Constraints: 0
-  m_CollisionDetection: 0
 --- !u!64 &64006140691636396
 MeshCollider:
   m_ObjectHideFlags: 1
