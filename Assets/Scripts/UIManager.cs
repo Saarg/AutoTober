@@ -49,12 +49,14 @@ public class UIManager : MonoBehaviour {
 
 	void OnApplicationFocus(bool hasFocus)
     {
-        Pause();
+		if (!hasFocus)
+        	Pause();
     }
 
     void OnApplicationPause(bool pauseStatus)
     {
-        Pause();
+		if (pauseStatus)
+       		Pause();
     }
 
 	public void Pause()
